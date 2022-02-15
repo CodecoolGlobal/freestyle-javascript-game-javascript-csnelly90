@@ -33,5 +33,33 @@ body{
 
 .pac-man {
     background-color: yellow;
-    border-radius: 10px;
+    border: 0px;
+}
+
+.blinky {
+    background-color: red;
+    border: 0px;
+
+}
+
+.pinky {
+    background-color: hotpink;
+    border: 0px;
+}
+
+.inky {
+    background-color: cyan;
+    border: 0px;
+
+}
+
+.clyed {
+    background-color: darkorange;
+    border: 0px;
+
+}
+
+.scared-ghost {
+    background-color: mediumaquamarine;
+    border: 0px;
 }

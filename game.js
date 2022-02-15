@@ -132,13 +132,51 @@ document.addEventListener("DOMContentLoaded", () => {
                 break
         }
 
-        squares[pacmanCurrentIndex].classList.add('pac-man')
-
+        squares[pacmanCurrentIndex].classList.add('pac-man');
         //pacDotEaten()
         //powerPelletEaten()
         //checkForGameOver()
         //checkForWin()
     }
-    document.addEventListener("keyup", movePacman)
 
+    function eatePowerPellet(e){
+
+        if (squares[pacmanCurrentIndex].classList.item(0) == "power-pellet"){
+            squares[pacmanCurrentIndex].classList.remove("power-pellet")
+        }
+    }
+
+    document.addEventListener("keyup", movePacman)
+    document.addEventListener("keyup", eatePowerPellet)
+
+
+
+    //create ghost template
+    class Ghost{
+        constructor(className,startIndex,speed) {
+            this.className = className
+            this.startIndex = startIndex
+            this.speed = speed
+            this.currentIndex = startIndex
+            this.timerId = NaN
+        }
+    }
+    ghosts = [
+        new Ghost('blinky', 348, 250),
+        new Ghost('inky', 351, 300),
+        new Ghost('pinky', 376, 400),
+        new Ghost('clyed', 379, 500)
+
+    ]
+
+
+
+    //draw my ghosts on the table
+    ghosts.forEach(ghost => {
+        squares[ghost.currentIndex].classList.add(ghost.className)
+        squares[ghost.currentIndex].classList.add('ghost')
+    })
+
+    //move ghost function
+    ghosts.forEach(ghost => moveGhost(ghost))
 })
