@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //move pac-man
     function movePacman(e){
         squares[pacmanCurrentIndex].classList.remove("pac-man")
-
+        //move pac-man with arrows
         switch (e.keyCode){
             case 37:  // left arrow key
                 if (pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex -1].classList.contains("wall")
@@ -102,6 +102,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 break
             case 40: // down arrow key
+                if (pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex +width].classList.contains("wall")
+                    && !squares[pacmanCurrentIndex +width].classList.contains("ghost-lair")) pacmanCurrentIndex += width
+                break
+            //move pac-man with awsd
+            case 65:  // a key
+                if (pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex -1].classList.contains("wall")
+                    && !squares[pacmanCurrentIndex -1].classList.contains("ghost-lair")) pacmanCurrentIndex -= 1
+                //check if pacman is in the left exit
+                if(pacmanCurrentIndex -1 === 363){
+                    pacmanCurrentIndex = 391;
+                }
+                break
+            case 87: // w key
+                if (pacmanCurrentIndex - width >= 0 && !squares[pacmanCurrentIndex -width].classList.contains("wall")
+                    && !squares[pacmanCurrentIndex -width].classList.contains("ghost-lair")) pacmanCurrentIndex -= width
+                break
+            case 68: // d key
+                if (pacmanCurrentIndex % width < width-1 && !squares[pacmanCurrentIndex +1].classList.contains("wall")
+                    && !squares[pacmanCurrentIndex +1].classList.contains("ghost-lair")) pacmanCurrentIndex += 1
+                //check if pacman is in the right exit
+                if(pacmanCurrentIndex +1 === 392) {
+                    pacmanCurrentIndex = 364
+                }
+                break
+            case 83: // s key
                 if (pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex +width].classList.contains("wall")
                     && !squares[pacmanCurrentIndex +width].classList.contains("ghost-lair")) pacmanCurrentIndex += width
                 break
