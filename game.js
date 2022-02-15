@@ -9,7 +9,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".grid");
     const scoreDisplay = document.querySelector("#score");
-    const width = 28; //28 x 28 = 784
+    const width = 28; //28 x 28 = 784 squares
+    let score = 0;
 
     // game board layout
     const layout = [
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function movePacman(e){
         squares[pacmanCurrentIndex].classList.remove("pac-man")
         //move pac-man with arrows
+
         switch (e.keyCode){
             case 37:  // left arrow key
                 if (pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex -1].classList.contains("wall")
@@ -132,22 +134,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 break
         }
 
-        squares[pacmanCurrentIndex].classList.add('pac-man');
-        //pacDotEaten()
-        //powerPelletEaten()
+
+
+        squares[pacmanCurrentIndex].classList.add("pac-man")
+
+        pacDotEaten()
+        powerPelletEaten()
         //checkForGameOver()
         //checkForWin()
     }
 
-    function eatePowerPellet(e){
+    function powerPelletEaten(e){
 
         if (squares[pacmanCurrentIndex].classList.item(0) == "power-pellet"){
+            score += 200
+            scoreDisplay.innerHTML = score.toString()
             squares[pacmanCurrentIndex].classList.remove("power-pellet")
         }
     }
 
-    document.addEventListener("keyup", movePacman)
-    document.addEventListener("keyup", eatePowerPellet)
+    document.addEventListener("keydown",  movePacman)
+
 
 
 
@@ -177,6 +184,36 @@ document.addEventListener("DOMContentLoaded", () => {
         squares[ghost.currentIndex].classList.add('ghost')
     })
 
-    //move ghost function
+    //move the Ghosts randomly
     ghosts.forEach(ghost => moveGhost(ghost))
+
+    function moveGhost(ghost) {
+    const directions =  [-1, +1, width, -width]
+    let direction = directions[Math.floor(Math.random() * directions.length)]
+
+    ghost.timerId = setInterval(function() {
+      //if the next squre your ghost is going to go to does not have a ghost and does not have a wall
+      if  (!squares[ghost.currentIndex + direction].classList.contains('ghost') &&
+        !squares[ghost.currentIndex + direction].classList.contains('wall') ) {
+          //remove the ghosts classes
+          squares[ghost.currentIndex].classList.remove(ghost.className)
+          squares[ghost.currentIndex].classList.remove('ghost', 'scared-ghost')
+          //move into that space
+          ghost.currentIndex += direction
+          squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
+      //else find a new random direction ot go in
+      } else direction = directions[Math.floor(Math.random() * directions.length)]
+        }, ghost.speed)
+     }
+
+    // what happens when you eat a pac-dot
+    function pacDotEaten() {
+        if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
+            score += 10
+            scoreDisplay.innerHTML = score.toString()
+            squares[pacmanCurrentIndex].classList.remove("pac-dot")
+        }
+    }
+
+
 })
