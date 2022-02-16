@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             score+=200
             squares[ghost.currentIndex].classList.add(ghost.className,'ghost')
         }
-        // getDamage()
+        getDamage()
         }, ghost.speed)
      }
 
@@ -227,14 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className))
             ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
-            // ghosts.forEach(ghost => {
-            // squares[ghost.currentIndex].classList.remove("ghost")
-            // squares[ghost.currentIndex].classList.remove(ghost.className)
-            // ghost.currentIndex = ghost.startIndex
-            // squares[ghost.currentIndex].classList.add("ghost")
-            // squares[ghost.currentIndex].classList.add(ghost.className)
-    // })
-
         } else if (lives === 0){
             checkForGameOver()
         }
