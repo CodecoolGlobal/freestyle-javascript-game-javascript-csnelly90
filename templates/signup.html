@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Ask Mate - Sign Up{% endblock %}
+
+{% block content %}
+
+    <div class="login-box">
+        <h2>Create account</h2>
+        <form action="{{ url_for('signup') }}" method="post">
+            <div class="user-box">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="user-box">
+                <input type="email" id="email" name="email" required>
+                <label for="email">E-mail</label>
+            </div>
+            <div class="user-box">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <small class="have-account">
+                You already have an account? <a href="{{url_for('login')}}">Login</a>
+        </small>
+    </div>
+
+{% endblock %}
