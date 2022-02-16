@@ -4,6 +4,10 @@
 
 {% block content %}
 
+    <div>
+        <img class="pac-man-signup" src="{{ url_for('static', filename='images/pac-man.png') }}" alt="pac man icon">
+    </div>
+
     <div class="login-box">
         <h2>Create account</h2>
         <form action="{{ url_for('signup') }}" method="post">
@@ -23,6 +27,10 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
+    </div>
+
+    <div>
+        <img class="ghost-signup" src="{{ url_for('static', filename='images/ghosts-no-bg.png') }}" alt="pac man icon">
     </div>
 
 {% endblock %}
