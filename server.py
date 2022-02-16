@@ -74,5 +74,29 @@ def signup():
         return render_template("signup.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        hashed_password = data_handler.get_hashed_password(email)
+        all_user_emails = data_handler.get_all_emails()
+        if email in all_user_emails:
+            if verify_password(password, hashed_password):
+                session["email"] = email
+                session["user_id"] = data_handler.get_user_id_by_email(email)
+                return redirect(url_for("menu"))
+            else:
+                flash("Wrong password!", "warning")
+                return redirect(url_for("login"))
+        else:
+            flash("No account with that e-mail. Please sign up first.", "warning")
+            return redirect(url_for('signup'))
+    else:
+        if "email" in session:
+            return redirect(url_for("menu"))
+        return render_template("login.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
