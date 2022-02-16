@@ -11,6 +11,15 @@
     </head>
 
     <body>
+
+        {% if get_flashed_messages() %}
+            <div class="flash-message">
+                {% for category, message in get_flashed_messages(with_categories=True) %}
+                    <div class="alert alert-{{category}}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {% block content %}{% endblock %}
     </body>
 </html>

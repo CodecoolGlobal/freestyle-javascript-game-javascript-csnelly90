@@ -59,8 +59,8 @@ html, body {
 .menu-item {
     display: flex;
     justify-content: center;
-    padding: 5px 30px;
-    letter-spacing: 10px;
+    padding: 0 30px;
+    letter-spacing: 5px;
     font-size: 1em;
 }
 
@@ -142,4 +142,136 @@ html, body {
 .scared-ghost {
     background-color: mediumaquamarine;
     border: 0;
+}
+
+/* FLASH MESSAGES */
+
+.alert {
+    position: absolute;
+    text-align: center;
+    font-size: 0.8em;
+    top: 5%;
+    left: 50%;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 0 5px 10px rgba(0,0,0,.3);
+    border-radius: 10px;
+}
+
+.alert-warning {
+    background-color: rgba(229, 9, 68, 0.35);
+    color: #fff;
+}
+
+.alert-info {
+    background-color: rgba(133, 104, 224, 0.65);
+    color: #fff;
+}
+
+.alert-success {
+    background-color: rgba(154, 241, 167, 0.47);
+    color: #fff;
+}
+
+/* Login box */
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    border: 2px solid #fcc741;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fcc741;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 2px solid #fcc741;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+}
+
+input[type=button], input[type=submit] {
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin: 20px 0;
+    letter-spacing: 4px;
+    border: 2px solid #fcc741;
+    border-radius: 5px;
+    background: transparent;
+    font-weight: bold;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+    background: #d3d3d3;
+    color: #343434;
+    box-shadow: 0 0 5px #9f98a2,
+              0 0 25px #9f98a2;
+}
+
+.login-box a {
+    text-decoration: none;
+    color: #fcc741;
+}
+
+.pac-man-login {
+    max-width: 150px;
+    transform: rotate(180deg);
+    position: absolute;
+    top: 10%;
+    left: 46%;
+}
+
+.ghost-login {
+    width: 600px;
+    position: absolute;
+    top: 75%;
+    left: 34%;
 }

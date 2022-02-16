@@ -5,12 +5,20 @@ import database_common
 
 
 @database_common.connection_handler
-def add_new_user(cursor: RealDictCursor, email, password, username, registration_date):
+def add_new_user(cursor: RealDictCursor, email, password, username):
     query = f"""
             INSERT INTO users (email, password, username)
             VALUES('{email}', '{password}', '{username}');
             """
     cursor.execute(query)
+
+
+@database_common.connection_handler
+def get_user_id_by_email(cursor: RealDictCursor, email):
+    query = """SELECT id FROM users WHERE email = %(email)s"""
+    value = {"email": email}
+    cursor.execute(query, value)
+    return cursor.fetchall()[0].get("id")
 
 
 @database_common.connection_handler

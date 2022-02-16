@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Ask Mate - Sign Up{% endblock %}
+{% block title %}Pac-Man - Sign Up{% endblock %}
 
 {% block content %}
 
@@ -19,18 +19,10 @@
                 <input type="password" id="password" name="password" required>
                 <label for="password">Password</label>
             </div>
-
             <div>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
                 <input type="submit" value="Submit">
             </div>
         </form>
-        <small class="have-account">
-                You already have an account? <a href="{{url_for('login')}}">Login</a>
-        </small>
     </div>
 
 {% endblock %}
