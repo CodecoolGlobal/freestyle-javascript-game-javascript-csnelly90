@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         getDamage()
     }
 
-    
+
     document.addEventListener("keydown",  movePacman)
 
     //create ghost template
@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             score+=200
             squares[ghost.currentIndex].classList.add(ghost.className,'ghost')
         }
+        getDamage()
         }, ghost.speed)
      }
 
@@ -216,13 +217,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function getDamage() {
-        if (squares[pacmanCurrentIndex].classList.contains("ghost") && lives !== 0) {
+        if (squares[pacmanCurrentIndex].classList.contains("ghost") && lives !== 0 &&
+            !squares[pacmanCurrentIndex].classList.contains("scared-ghost")) {
             lives--
             squares[pacmanCurrentIndex].classList.remove("pac-man")
             livesDisplay.innerHTML = lives.toString()
-            createBoard()
             pacmanCurrentIndex = 490
             squares[pacmanCurrentIndex].classList.add("pac-man")
+            squares[ghost.currentIndex].classList.remove("ghost")
+            ghost.currentIndex = ghost.startIndex
+            squares[ghost.currentIndex].classList.add("ghost")
         } else if (lives === 0){
             checkForGameOver()
         }
