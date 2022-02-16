@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Ask Mate - Login{% endblock %}
+
+{% block content %}
+
+    {% if get_flashed_messages() %}
+        <div class="flash-message">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+                <div class="alert alert-{{category}}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="user-box">
+                <input type="email" id="email" name="email" required>
+                <label for="email">E-mail</label>
+            </div>
+            <div class="user-box">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+
+             <div>
+                 <span></span>
+                 <span></span>
+                 <span></span>
+                 <span></span>
+                 <input type="submit" value="Submit">
+            </div>
+        </form>
+        <div class="have-account">
+            <small>You do not have account yet? <a href="{{url_for('signup')}}">Sign Up</a></small>
+        </div>
+    </div>
+
+{% endblock %}
