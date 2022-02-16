@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Pac-Man{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="title">
+            <h1>pa<span class="pac-dot-title">c-</span>man</h1>
+        </div>
+        <div class="ghosts-menu">
+            <img class="ghosts-image" src="{{ url_for('static', filename='images/ghosts-menu.png') }}" alt="ghost icons">
+        </div>
+        <div class="menu-item">
+            <h2 class="start-game"><a href="{{ url_for('index') }}">start game</a></h2>
+        </div>
+        <div class="menu-item">
+            <h2 class="leaderboard"><a href="{{ url_for('leaderboard') }}" class="start-game">leaderboard</a></h2>
+        </div>
+    </div>
+{% endblock %}
