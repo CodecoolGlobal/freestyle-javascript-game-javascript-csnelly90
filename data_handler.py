@@ -14,6 +14,14 @@ def add_new_user(cursor: RealDictCursor, email, password, username, registration
 
 
 @database_common.connection_handler
+def get_user_id_by_email(cursor: RealDictCursor, email):
+    query = """SELECT id FROM users WHERE email = %(email)s"""
+    value = {"email": email}
+    cursor.execute(query, value)
+    return cursor.fetchall()[0].get("id")
+
+
+@database_common.connection_handler
 def get_all_users(cursor: RealDictCursor):
     cursor.execute("""SELECT * FROM users ORDER BY email""")
     return cursor.fetchall()
