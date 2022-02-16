@@ -5,6 +5,8 @@ import data_handler
 
 app = Flask(__name__)
 
+app.config["SECRET_KEY"] = "key"
+
 
 # Main functions
 
@@ -61,7 +63,7 @@ def signup():
         password = hash_password(request.form["password"])
         if email in all_user_emails:
             flash("An account already exists with this email.", "warning")
-            # return redirect(url_for("login"))
+            return redirect(url_for("login"))
         else:
             data_handler.add_new_user(email, password, username)
             session["user_id"] = data_handler.get_user_id_by_email(email)

@@ -7,18 +7,23 @@
         <div class="title">
             <h1>pa<span class="pac-dot-title">c-</span>man</h1>
         </div>
-        <div class="ghosts-menu">
-            <img class="ghosts-image" src="{{ url_for('static', filename='images/ghosts-menu.png') }}" alt="ghost icons">
-        </div>
 
         {% if session.email %}
-            <div class="title">
+            <div class="title menu-item">
                 <h2>welcome to pac-man!</h2>
             </div>
+
+            <div class="ghosts-menu">
+                <img class="ghosts-image" src="{{ url_for('static', filename='images/ghosts-menu.png') }}" alt="ghost icons">
+            </div>
+
             <div class="menu-item">
                 <h2><a href="{{ url_for('menu') }}">go to menu</a></h2>
             </div>
         {% else %}
+            <div class="ghosts-menu">
+                <img class="ghosts-image" src="{{ url_for('static', filename='images/ghosts-menu.png') }}" alt="ghost icons">
+            </div>
             <div class="menu-item">
                 <h2 class="login"><a href="{{ url_for('login') }}">login</a></h2>
             </div>
@@ -26,8 +31,6 @@
                 <h2 class="signup"><a href="{{ url_for('signup') }}">signup</a></h2>
             </div>
         {% endif %}
-
-
 
     </div>
 {% endblock %}

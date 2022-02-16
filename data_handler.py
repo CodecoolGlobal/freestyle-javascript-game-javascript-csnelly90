@@ -5,7 +5,7 @@ import database_common
 
 
 @database_common.connection_handler
-def add_new_user(cursor: RealDictCursor, email, password, username, registration_date):
+def add_new_user(cursor: RealDictCursor, email, password, username):
     query = f"""
             INSERT INTO users (email, password, username)
             VALUES('{email}', '{password}', '{username}');
