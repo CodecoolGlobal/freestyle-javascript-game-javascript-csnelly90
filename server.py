@@ -98,5 +98,17 @@ def login():
         return render_template("login.html")
 
 
+@app.route("/logout")
+def logout():
+    # remove the username from the session if it's there
+    if is_logged_in():
+        session.clear()
+        flash("You are logged out.", "info")
+        return redirect(url_for("welcome"))
+    else:
+        flash("You are already logged out.", "info")
+        return redirect(url_for("login"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
