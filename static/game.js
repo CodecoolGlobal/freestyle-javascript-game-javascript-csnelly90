@@ -141,6 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pacDotEaten()
         powerPelletEaten()
         getDamage()
+        getBonusLife()
+        getNewMap()
     }
 
 
@@ -220,22 +222,45 @@ document.addEventListener("DOMContentLoaded", () => {
         if (squares[pacmanCurrentIndex].classList.contains("ghost") && lives !== 0 &&
             !squares[pacmanCurrentIndex].classList.contains("scared-ghost")) {
             lives--
-            squares[pacmanCurrentIndex].classList.remove("pac-man")
+            restoreMap()
+        } else if (lives === 0){
+            checkForGameOver()
+        }
+    }
+
+
+    function checkForGameOver() {
+        ghosts.forEach(ghost => clearInterval(ghost.timerId))
+        document.removeEventListener("keydown",  movePacman)
+        livesDisplay.innerHTML = "GAME OVER"
+    }
+
+
+    function getBonusLife() {
+        if (score === 10000){
+            lives++
+        }
+    }
+
+
+    function restoreMap() {
+        squares[pacmanCurrentIndex].classList.remove("pac-man")
             livesDisplay.innerHTML = lives.toString()
             pacmanCurrentIndex = 490
             squares[pacmanCurrentIndex].classList.add("pac-man")
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className))
             ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
-        } else if (lives === 0){
-            checkForGameOver()
-        }
     }
 
-    function checkForGameOver() {
-        ghosts.forEach(ghost => clearInterval(ghost.timerId))
-        document.removeEventListener("keydown",  movePacman)
-        livesDisplay.innerHTML = "GAME OVER"
+
+    function getNewMap(){
+        const square = document.getElementsByClassName("pac-dot");
+        if (square["length"] === 0){
+            restoreMap()
+            createBoard()
+
+        }
     }
 
 
