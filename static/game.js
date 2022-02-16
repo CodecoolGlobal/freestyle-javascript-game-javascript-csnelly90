@@ -9,8 +9,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".grid");
     const scoreDisplay = document.querySelector("#score");
+    const livesDisplay = document.querySelector("#lives");
     const width = 28; //28 x 28 = 784 squares
     let score = 0;
+    let lives = 3;
 
     // game board layout
     const layout = [
@@ -138,8 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pacDotEaten()
         powerPelletEaten()
-        //checkForGameOver()
-        //checkForWin()
+        getDamage()
     }
 
     function powerPelletEaten(e){
@@ -207,6 +208,25 @@ document.addEventListener("DOMContentLoaded", () => {
             scoreDisplay.innerHTML = score.toString()
             squares[pacmanCurrentIndex].classList.remove("pac-dot")
         }
+    }
+
+    function getDamage() {
+        if (squares[pacmanCurrentIndex].classList.contains("ghost") && lives !== 0) {
+            lives--
+            squares[pacmanCurrentIndex].classList.remove("pac-man")
+            livesDisplay.innerHTML = lives.toString()
+            createBoard()
+            pacmanCurrentIndex = 490
+            squares[pacmanCurrentIndex].classList.add("pac-man")
+        } else if (lives === 0){
+            checkForGameOver()
+        }
+    }
+
+    function checkForGameOver() {
+        ghosts.forEach(ghost => clearInterval(ghost.timerId))
+        document.removeEventListener("keydown",  movePacman)
+        livesDisplay.innerHTML = "GAME OVER"
     }
 
 
