@@ -9,8 +9,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".grid");
     const scoreDisplay = document.querySelector("#score");
+    const livesDisplay = document.querySelector("#lives");
     const width = 28; //28 x 28 = 784 squares
     let score = 0;
+    let lives = 3;
 
     // game board layout
     const layout = [
@@ -138,18 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pacDotEaten()
         powerPelletEaten()
-        //checkForGameOver()
-        //checkForWin()
+        getDamage()
     }
 
-    function powerPelletEaten(e){
-
-        if (squares[pacmanCurrentIndex].classList.item(0) === "power-pellet"){
-            score += 200
-            scoreDisplay.innerHTML = score.toString()
-            squares[pacmanCurrentIndex].classList.remove("power-pellet")
-        }
-    }
 
     document.addEventListener("keydown",  movePacman)
 
@@ -161,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.speed = speed
             this.currentIndex = startIndex
             this.timerId = NaN
+            this.isScared = false
         }
     }
 
@@ -197,6 +191,18 @@ document.addEventListener("DOMContentLoaded", () => {
           squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
       //else find a new random direction ot go in
       } else direction = directions[Math.floor(Math.random() * directions.length)]
+
+        if (ghost.isScared){
+            squares[ghost.currentIndex].classList.add('scared-ghost')
+        }
+
+        if (ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
+            squares[ghost.currentIndex].classList.remove(ghost.className,'ghost','scared-ghost')
+            ghost.currentIndex = ghost.startIndex
+            score+=200
+            squares[ghost.currentIndex].classList.add(ghost.className,'ghost')
+        }
+        getDamage()
         }, ghost.speed)
      }
 
@@ -208,6 +214,44 @@ document.addEventListener("DOMContentLoaded", () => {
             squares[pacmanCurrentIndex].classList.remove("pac-dot")
         }
     }
+
+
+    function getDamage() {
+        if (squares[pacmanCurrentIndex].classList.contains("ghost") && lives !== 0 &&
+            !squares[pacmanCurrentIndex].classList.contains("scared-ghost")) {
+            lives--
+            squares[pacmanCurrentIndex].classList.remove("pac-man")
+            livesDisplay.innerHTML = lives.toString()
+            pacmanCurrentIndex = 490
+            squares[pacmanCurrentIndex].classList.add("pac-man")
+            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className))
+            ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
+            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
+        } else if (lives === 0){
+            checkForGameOver()
+        }
+    }
+
+    function checkForGameOver() {
+        ghosts.forEach(ghost => clearInterval(ghost.timerId))
+        document.removeEventListener("keydown",  movePacman)
+        livesDisplay.innerHTML = "GAME OVER"
+    }
+
+
+    function unScareGhosts(){
+        ghosts.forEach(ghost => ghost.isScared = false)
+    }
+
+     function powerPelletEaten() {
+    if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+      score +=200
+      ghosts.forEach(ghost => ghost.isScared = true)
+        scoreDisplay.innerHTML = score.toString()
+      setTimeout(unScareGhosts, 10000)
+      squares[pacmanCurrentIndex].classList.remove('power-pellet')
+    }
+  }
 
 
 })
