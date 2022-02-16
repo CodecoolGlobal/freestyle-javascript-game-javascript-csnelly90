@@ -1,0 +1,141 @@
+/* GENERAL */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+  font-family: emulogic;
+  src: url(emulogic.ttf);
+}
+
+@font-face {
+  font-family: pac-font;
+  src: url(pac-font.ttf);
+}
+
+/* MENU */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    height: 100%;
+    width: 70%;
+    margin: auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-family: emulogic, sans-serif;
+    letter-spacing: 0.3em;
+    font-size: 4em;
+    color: #ffffff;
+}
+
+.pac-dot-title {
+    font-family: pac-font, sans-serif;
+    font-size: 1.3em;
+    color: #ffea00;
+}
+
+.ghosts-menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.ghosts-image {
+    max-width: 65%;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    padding: 5px 30px;
+    font-family: emulogic, sans-serif;
+    letter-spacing: 10px;
+    font-size: 1em;
+}
+
+.menu-item a {
+    text-decoration: none;
+}
+
+.start-game {
+    color: #d9946c;
+}
+
+.leaderboard {
+    color: #30eac6;
+}
+
+/* GAME DESIGN */
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 560px;
+    height: 560px;
+    border: 1px solid black;
+}
+
+.grid div {
+    width: 20px;
+    height: 20px;
+}
+
+.pac-dot {
+    background-color: #c5e066;
+    border: 7px solid #000;
+    box-sizing: border-box;
+}
+
+.wall {
+    background-color: #1a1aa9;
+}
+
+.power-pellet {
+    background-color: #c5e066;
+    border-radius: 10px;
+}
+
+.pac-man {
+    background-color: yellow;
+    border: 0;
+}
+
+.blinky {
+    background-color: red;
+    border: 0;
+
+}
+
+.pinky {
+    background-color: hotpink;
+    border: 0;
+}
+
+.inky {
+    background-color: cyan;
+    border: 0;
+
+}
+
+.clyde {
+    background-color: darkorange;
+    border: 0;
+
+}
+
+.scared-ghost {
+    background-color: mediumaquamarine;
+    border: 0;
+}
