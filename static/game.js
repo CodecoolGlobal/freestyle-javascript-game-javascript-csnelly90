@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //starting position of pac-man
     let pacmanCurrentIndex = 490
-    squares[pacmanCurrentIndex].classList.add("pac-man")
+    squares[pacmanCurrentIndex].classList.add("pac-man-left")
 
 
     function playerMoveLeft(){
@@ -278,10 +278,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function restoreMap() {
-        squares[pacmanCurrentIndex].classList.remove("pac-man")
+        squares[pacmanCurrentIndex].classList.remove("pac-man-left", "pac-man-up",
+                        "pac-man-down", "pac-man-right")
             livesDisplay.innerHTML = lives.toString()
             pacmanCurrentIndex = 490
-            squares[pacmanCurrentIndex].classList.add("pac-man")
+            squares[pacmanCurrentIndex].classList.add("pac-man-left")
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className))
             ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
