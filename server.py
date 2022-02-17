@@ -33,13 +33,12 @@ def index():
     if request.method == "POST":
         score = request.form["user_score"]
         lives = request.form["user_lives"]
-        data_handler.save_user_score(score, user_id)
+        if score != "0":
+            data_handler.save_user_score(score, user_id)
         if lives == "0":
-            # return redirect(url_for("game_over", score=score))
-            pass  # TO DO: game over html
+            return redirect(url_for("game_over", score=score))
         else:
-            # return redirect(url_for("exit_game", score=score))
-            return f"Your score is {score}"
+            return redirect(url_for("exit_game", score=score))
     else:
         return render_template("index.html", username=username)
 
@@ -51,12 +50,12 @@ def leaderboard():
 
 @app.route("/game-over/<score>")
 def game_over(score):
-    pass
+    return render_template("game-over.html", score=score)
 
 
-@app.route("/exit/<score>")
+@app.route("/game-ended/<score>")
 def exit_game(score):
-    pass
+    return render_template("game-ended.html", score=score)
 
 
 # Password handling functions

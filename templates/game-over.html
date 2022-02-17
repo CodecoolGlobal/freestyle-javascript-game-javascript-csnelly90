@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Pac-Man - GAME OVER{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="menu-item game-over">
+            <img class="ghosts-image" src="{{ url_for('static', filename='images/game-over-no-bg.png') }}" alt="game over">
+        </div>
+        <div class="menu-item"><p class="final-score">Your score: {{ score }}</p></div>
+        <div class="menu-item login">
+            <h2>would you like to play again?</h2>
+        </div>
+        <div class="menu-item start-game">
+            <h2><a href="{{ url_for('index') }}">yes</a></h2>
+        </div>
+        <div class="menu-item no-play-again">
+            <h2><a href="{{ url_for('menu') }}">no</a></h2>
+        </div>
+
+    </div>
+{% endblock %}
