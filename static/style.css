@@ -161,6 +161,7 @@ html, body {
 }
 
 .blinky {
+    background-image: url("images/pac-man-images/blinky.png");
     border: 0;
 
 }
@@ -186,6 +187,7 @@ html, body {
 }
 
 .pinky {
+    background-image: url("images/pac-man-images/pinky.png");
     border: 0;
 }
 
@@ -210,6 +212,7 @@ html, body {
 }
 
 .inky {
+    background-image: url("images/pac-man-images/inky.png");
     border: 0;
 }
 
@@ -234,6 +237,7 @@ html, body {
 }
 
 .clyde {
+    background-image: url("images/pac-man-images/clyde.png");
     border: 0;
 }
 
