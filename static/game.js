@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const width = 28; //28 x 28 = 784 squares
     let score = 0;
     let lives = 3;
-
+    let remove_ghost_classes = ['blinky-up','blinky-down','blinky-left','blinky-right','pinky-up','pinky-down','pinky-left','pinky-right','inky-up','inky-down','inky-left','inky-right','clyde-up','clyde-down','clyde-right','clyde-right']
     // game board layout
     const layout = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -237,7 +237,19 @@ document.addEventListener("DOMContentLoaded", () => {
           squares[ghost.currentIndex].classList.remove(ghost.className)
           squares[ghost.currentIndex].classList.remove('ghost', 'scared-ghost')
           //move into that space
-          ghost.currentIndex += direction
+          if(ghost.className == 'blinky') {
+              changeGhostImg(direction,ghost)
+          }
+          if(ghost.className == 'pinky') {
+              changeGhostImg(direction,ghost)
+          }
+          if(ghost.className == 'inky') {
+              changeGhostImg(direction,ghost)
+          }
+          if(ghost.className == 'clyde') {
+              changeGhostImg(direction,ghost)
+          }
+
           squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
       //else find a new random direction ot go in
       } else direction = directions[Math.floor(Math.random() * directions.length)]
@@ -256,6 +268,28 @@ document.addEventListener("DOMContentLoaded", () => {
         getDamage()
         }, ghost.speed)
      }
+      function changeGhostImg(direction,ghost){
+              if (direction == -1){
+                  squares[ghost.currentIndex].classList.remove(`${ghost.className}-up`,`${ghost.className}-down`,`${ghost.className}-left`,`${ghost.className}-right`)
+                  ghost.currentIndex += direction
+                  squares[ghost.currentIndex].classList.add(`${ghost.className}-left`)
+              }
+              if (direction == 1){
+                  squares[ghost.currentIndex].classList.remove(`${ghost.className}-up`,`${ghost.className}-down`,`${ghost.className}-left`,`${ghost.className}-right`)
+                  ghost.currentIndex += direction
+                  squares[ghost.currentIndex].classList.add(`${ghost.className}-right`)
+              }
+              if (direction == width){
+                  squares[ghost.currentIndex].classList.remove(`${ghost.className}-up`,`${ghost.className}-down`,`${ghost.className}-left`,`${ghost.className}-right`)
+                  ghost.currentIndex += direction
+                  squares[ghost.currentIndex].classList.add(`${ghost.className}-down`)
+              }
+              if (direction == -width){
+                  squares[ghost.currentIndex].classList.remove(`${ghost.className}-up`,`${ghost.className}-down`,`${ghost.className}-left`,`${ghost.className}-right`)
+                  ghost.currentIndex += direction
+                  squares[ghost.currentIndex].classList.add(`${ghost.className}-up`)
+              }
+          }
 
     // what happens when you eat a pac-dot
     function pacDotEaten() {
@@ -296,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
             livesDisplay.innerHTML = lives.toString()
             pacmanCurrentIndex = 490
             squares[pacmanCurrentIndex].classList.add("pac-man-left")
-            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className))
+            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className, ...remove_ghost_classes))
             ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
             ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
     }
