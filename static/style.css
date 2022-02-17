@@ -132,7 +132,7 @@ html, body {
 .power-pellet {
     /*background-color: #c5e066;*/
     background-image: url("images/cc-logo-small.png");
-    border-radius: 15px;
+
 }
 
 .pac-man {
@@ -165,7 +165,6 @@ html, body {
 }
 
 .blinky {
-    background-color: red;
     border: 0;
 
 }
@@ -177,24 +176,20 @@ html, body {
 
 .blinky-right {
     background-image: url("images/ghosts/blinky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .blinky-up {
     background-image: url("images/ghosts/blinky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .blinky-down {
     background-image: url("images/ghosts/blinky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .pinky {
-    background-color: hotpink;
     border: 0;
 }
 
@@ -205,24 +200,20 @@ html, body {
 
 .pinky-right {
     background-image: url("images/ghosts/pinky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .pinky-up {
     background-image: url("images/ghosts/pinky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .pinky-down {
     background-image: url("images/ghosts/pinky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .inky {
-    background-color: cyan;
     border: 0;
 }
 
@@ -233,24 +224,20 @@ html, body {
 
 .inky-right {
     background-image: url("images/ghosts/inky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .inky-up {
     background-image: url("images/ghosts/inky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .inky-down {
     background-image: url("images/ghosts/inky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .clyde {
-    background-color: darkorange;
     border: 0;
 }
 
@@ -261,19 +248,16 @@ html, body {
 
 .clyde-right {
     background-image: url("images/ghosts/clyde-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .clyde-up {
     background-image: url("images/ghosts/clyde-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .clyde-down {
     background-image: url("images/ghosts/clyde-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
