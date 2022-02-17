@@ -31,6 +31,13 @@ def leaderboard():
     return render_template("leaderboard.html")
 
 
+@app.route("/game-over")
+def game_over():
+    user_id = data_handler.get_user_id_by_email()
+    score = 200
+    data_handler.save_user_score(score, user_id)
+
+
 # Password handling functions
 
 

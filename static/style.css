@@ -38,6 +38,7 @@ html, body {
     flex-direction: row;
     align-content: center;
     justify-content: center;
+    gap: 30px;
     height: 100%;
     width: 90%;
     margin: auto;
@@ -94,7 +95,8 @@ html, body {
     flex-wrap: wrap;
     width: 840px;
     height: 840px;
-    border: 1px solid black;
+    border: 3px solid #fcc741;
+    border-radius: 5px;
 }
 
 .grid div {
@@ -107,12 +109,20 @@ html, body {
     flex-wrap: wrap;
     flex-direction: column;
     height: 840px;
+    border: 3px solid #fcc741;
+    border-radius: 5px;
 }
 
 .game-info-item {
     display: flex;
     justify-content: flex-start;
     margin-left: 50px;
+    width: 400px;
+}
+
+.exit {
+    margin-top: 500px;
+    line-height: 25px;
 }
 
 .score {
@@ -388,11 +398,14 @@ input[type=button], input[type=submit] {
     font-weight: bold;
 }
 
+.game-info-item input[type=submit] {
+    border: 3px solid #fcc741;;
+    margin: 0;
+}
+
 input[type=button]:hover, input[type=submit]:hover {
-    background: #d3d3d3;
+    background: #fcc741;
     color: #343434;
-    box-shadow: 0 0 5px #9f98a2,
-              0 0 25px #9f98a2;
 }
 
 .login-box a {

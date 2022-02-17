@@ -6,8 +6,26 @@
     <div class="game-container">
         <div class="grid"></div>
         <div class="game-info">
-            <div class="game-info-item"><h3 class="score">score: <span id = "score">0</span></h3></div>
             <div class="game-info-item"><h3 class="lives">lives: <span id = "lives">3</span></h3></div>
+            <div class="game-info-item"><h3 class="score">score: <span id = "score">0</span></h3></div>
+            <div class="game-info-item exit">
+                {% if session.email %}
+                    <h5>click here to exit the game and save your current score</h5>
+                {% else %}
+                    <h5>click here to exit the game</h5>
+                {% endif %}
+            </div>
+            <div class="game-info-item">
+                <form action="{{ url_for('game_over') }}" method="post">
+                    <div>
+                        <input type="text" id="user_score" name="user_score" value="" hidden>
+                        <label for="user_score"></label>
+                    </div>
+                    <div>
+                         <input type="submit" value="Exit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

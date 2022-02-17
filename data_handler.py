@@ -50,3 +50,16 @@ def get_hashed_password(cursor: RealDictCursor, email):
         return result["password"]
     else:
         return "not_found"
+
+
+# Scores
+
+
+@database_common.connection_handler
+def save_user_score(cursor: RealDictCursor, score, user_id):
+    query = f"""
+            INSERT INTO scores (score, user_id) 
+            VALUES ('{score}', '{user_id}')
+            RETURNING score;
+            """
+    cursor.execute(query)
