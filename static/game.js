@@ -239,16 +239,16 @@ document.addEventListener("DOMContentLoaded", () => {
           squares[ghost.currentIndex].classList.remove(ghost.className)
           squares[ghost.currentIndex].classList.remove('ghost', 'scared-ghost')
           //move into that space
-          if(ghost.className == 'blinky') {
+          if(ghost.className === 'blinky') {
               changeGhostImg(direction,ghost)
           }
-          if(ghost.className == 'pinky') {
+          if(ghost.className === 'pinky') {
               changeGhostImg(direction,ghost)
           }
-          if(ghost.className == 'inky') {
+          if(ghost.className === 'inky') {
               changeGhostImg(direction,ghost)
           }
-          if(ghost.className == 'clyde') {
+          if(ghost.className === 'clyde') {
               changeGhostImg(direction,ghost)
           }
 
@@ -261,7 +261,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
-            squares[ghost.currentIndex].classList.remove(ghost.className,'ghost','scared-ghost')
+            squares[ghost.currentIndex].classList.remove(ghost.className+"-left",ghost.className+"-right"
+                ,ghost.className+"-up",ghost.className+"-down",ghost.className,'ghost','scared-ghost')
             ghost.currentIndex = ghost.startIndex
             score+=200
             scoreDisplay.innerHTML = score.toString()
