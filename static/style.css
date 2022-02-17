@@ -135,11 +135,6 @@ html, body {
     border-radius: 15px;
 }
 
-.pac-man {
-    /*background-color: yellow;*/
-    background-image: url("images/pac-man-ingame.png");
-    border: 0;
-}
 
 .pac-man-left {
     background-image: url("images/pac-man-ingame.png");
