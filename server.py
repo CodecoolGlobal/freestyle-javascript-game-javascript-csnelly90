@@ -13,7 +13,12 @@ app.config["SECRET_KEY"] = "key"
 
 @app.route("/")
 def welcome():
-    return render_template("welcome.html")
+    if is_logged_in():
+        email = session["email"]
+        username = data_handler.get_username_by_email(email)
+    else:
+        username = ""
+    return render_template("welcome.html", username=username)
 
 
 @app.route("/menu")
