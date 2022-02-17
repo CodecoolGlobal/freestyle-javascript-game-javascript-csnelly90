@@ -17,3 +17,4 @@ CREATE TABLE scores (
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+INSERT INTO users (username, email, password) VALUES ('guest', 'guest', 'guest');

@@ -6,8 +6,35 @@
     <div class="game-container">
         <div class="grid grid1"></div>
         <div class="game-info">
-            <div class="game-info-item"><h3 class="score">score: <span id = "score">0</span></h3></div>
+            {% if session.email %}
+                <div class="game-info-item"><h3 class="lives">user: {{ username }}</h3></div>
+            {% else %}
+                <div class="game-info-item"><h3 class="lives">user: guest</h3></div>
+            {% endif %}
             <div class="game-info-item"><h3 class="lives">lives: <span id = "lives">3</span></h3></div>
+            <div class="game-info-item"><h3 class="score">score: <span id = "score">0</span></h3></div>
+            <div class="game-info-item exit">
+                {% if session.email %}
+                    <h5>click here to exit the game and save your current score</h5>
+                {% else %}
+                    <h5>click here to exit the game</h5>
+                {% endif %}
+            </div>
+            <div class="game-info-item">
+                <form action="{{ url_for('index') }}" method="post">
+                    <div>
+                        <input type="text" id="user_lives" name="user_lives" value="" hidden>
+                        <label for="user_lives"></label>
+                    </div>
+                    <div>
+                        <input type="text" id="user_score" name="user_score" value="" hidden>
+                        <label for="user_score"></label>
+                    </div>
+                    <div>
+                         <input type="submit" value="Exit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

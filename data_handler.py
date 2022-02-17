@@ -22,6 +22,14 @@ def get_user_id_by_email(cursor: RealDictCursor, email):
 
 
 @database_common.connection_handler
+def get_username_by_email(cursor: RealDictCursor, email):
+    query = """SELECT username FROM users WHERE email = %(email)s"""
+    value = {"email": email}
+    cursor.execute(query, value)
+    return cursor.fetchall()[0].get("username")
+
+
+@database_common.connection_handler
 def get_all_users(cursor: RealDictCursor):
     cursor.execute("""SELECT * FROM users ORDER BY email""")
     return cursor.fetchall()
@@ -50,3 +58,16 @@ def get_hashed_password(cursor: RealDictCursor, email):
         return result["password"]
     else:
         return "not_found"
+
+
+# Scores
+
+
+@database_common.connection_handler
+def save_user_score(cursor: RealDictCursor, score, user_id):
+    query = f"""
+            INSERT INTO scores (score, user_id) 
+            VALUES ('{score}', '{user_id}')
+            RETURNING score;
+            """
+    cursor.execute(query)

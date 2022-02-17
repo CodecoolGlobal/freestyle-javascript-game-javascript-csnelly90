@@ -21,14 +21,42 @@ def menu():
     return render_template("menu.html")
 
 
-@app.route("/game")
+@app.route("/game", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    if is_logged_in():
+        email = session["email"]
+        username = data_handler.get_username_by_email(email)
+    else:
+        email = "guest"
+        username = "guest"
+    user_id = data_handler.get_user_id_by_email(email)
+    if request.method == "POST":
+        score = request.form["user_score"]
+        lives = request.form["user_lives"]
+        data_handler.save_user_score(score, user_id)
+        if lives == "0":
+            # return redirect(url_for("game_over", score=score))
+            pass  # TO DO: game over html
+        else:
+            # return redirect(url_for("exit_game", score=score))
+            return f"Your score is {score}"
+    else:
+        return render_template("index.html", username=username)
 
 
 @app.route("/leaderboard")
 def leaderboard():
     return render_template("leaderboard.html")
+
+
+@app.route("/game-over/<score>")
+def game_over(score):
+    pass
+
+
+@app.route("/exit/<score>")
+def exit_game(score):
+    pass
 
 
 # Password handling functions
@@ -68,6 +96,7 @@ def signup():
             data_handler.add_new_user(email, password, username)
             session["user_id"] = data_handler.get_user_id_by_email(email)
             session["email"] = email
+            session["username"] = username
             return redirect(url_for("menu"))
     else:
         if "email" in session:
@@ -87,6 +116,7 @@ def login():
             if verify_password(password, hashed_password):
                 session["email"] = email
                 session["user_id"] = data_handler.get_user_id_by_email(email)
+                session["username"] = data_handler.get_username_by_email(email)
                 return redirect(url_for("menu"))
             else:
                 flash("Wrong password!", "warning")

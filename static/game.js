@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".grid");
     const scoreDisplay = document.querySelector("#score");
     const livesDisplay = document.querySelector("#lives");
+    const scoreInput = document.querySelector("#user_score")
+    const livesInput = document.querySelector("#user_lives")
     const width = 28; //28 x 28 = 784 squares
     let score = 0;
     let lives = 3;
@@ -264,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ghost.currentIndex = ghost.startIndex
             score+=200
             scoreDisplay.innerHTML = score.toString()
+            scoreInput.value = score.toString()
             squares[ghost.currentIndex].classList.add(ghost.className,'ghost')
         }
         getDamage()
@@ -297,11 +300,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
             score += 10
             if (scoreDisplay.innerHTML === "10000"){
-                console.log(scoreDisplay.innerHTML)
                 lives++
                 livesDisplay.innerHTML = lives.toString()
+                livesInput.value = lives.toString()
             }
             scoreDisplay.innerHTML = score.toString()
+            scoreInput.value = score.toString()
             squares[pacmanCurrentIndex].classList.remove("pac-dot")
         }
     }
@@ -322,18 +326,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
         document.removeEventListener("keydown",  movePacman)
         livesDisplay.innerHTML = "GAME OVER"
+        livesInput.value = "0"
     }
 
 
     function restoreMap() {
         squares[pacmanCurrentIndex].classList.remove("pac-man-left", "pac-man-up",
                         "pac-man-down", "pac-man-right")
-            livesDisplay.innerHTML = lives.toString()
-            pacmanCurrentIndex = 490
-            squares[pacmanCurrentIndex].classList.add("pac-man-left")
-            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className, ...remove_ghost_classes))
-            ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
-            ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
+        livesDisplay.innerHTML = lives.toString()
+        livesInput.value = lives.toString()
+        pacmanCurrentIndex = 490
+        squares[pacmanCurrentIndex].classList.add("pac-man-left")
+        ghosts.forEach(ghost => squares[ghost.currentIndex].classList.remove("ghost", ghost.className, ...remove_ghost_classes))
+        ghosts.forEach(ghost => ghost.currentIndex = ghost.startIndex)
+        ghosts.forEach(ghost => squares[ghost.currentIndex].classList.add("ghost", ghost.className))
     }
 
 
@@ -353,11 +359,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
      function powerPelletEaten() {
     if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
-      score +=200
-      ghosts.forEach(ghost => ghost.isScared = true)
+        score +=200
+        ghosts.forEach(ghost => ghost.isScared = true)
         scoreDisplay.innerHTML = score.toString()
-      setTimeout(unScareGhosts, 10000)
-      squares[pacmanCurrentIndex].classList.remove('power-pellet')
+        scoreInput.value = score.toString()
+        setTimeout(unScareGhosts, 10000)
+        squares[pacmanCurrentIndex].classList.remove('power-pellet')
     }
   }
 
