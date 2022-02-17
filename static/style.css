@@ -130,9 +130,9 @@ html, body {
 }
 
 .pac-dot {
-    background-color: #c5e066;
-    border: 10px solid #000;
-    box-sizing: border-box;
+    background-image: url("images/pac-dot.png");
+    /*border: 7px solid #000;*/
+    /*box-sizing: border-box;*/
 }
 
 .wall {
@@ -142,13 +142,7 @@ html, body {
 .power-pellet {
     /*background-color: #c5e066;*/
     background-image: url("images/cc-logo-small.png");
-    border-radius: 15px;
-}
 
-.pac-man {
-    /*background-color: yellow;*/
-    background-image: url("images/pac-man-ingame.png");
-    border: 0;
 }
 
 .pac-man-left {
@@ -175,7 +169,7 @@ html, body {
 }
 
 .blinky {
-    background-color: red;
+    background-image: url("images/pac-man-images/blinky.png");
     border: 0;
 
 }
@@ -187,24 +181,21 @@ html, body {
 
 .blinky-right {
     background-image: url("images/ghosts/blinky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .blinky-up {
     background-image: url("images/ghosts/blinky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .blinky-down {
     background-image: url("images/ghosts/blinky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .pinky {
-    background-color: hotpink;
+    background-image: url("images/pac-man-images/pinky.png");
     border: 0;
 }
 
@@ -215,24 +206,21 @@ html, body {
 
 .pinky-right {
     background-image: url("images/ghosts/pinky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .pinky-up {
     background-image: url("images/ghosts/pinky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .pinky-down {
     background-image: url("images/ghosts/pinky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .inky {
-    background-color: cyan;
+    background-image: url("images/pac-man-images/inky.png");
     border: 0;
 }
 
@@ -243,24 +231,21 @@ html, body {
 
 .inky-right {
     background-image: url("images/ghosts/inky-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .inky-up {
     background-image: url("images/ghosts/inky-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .inky-down {
     background-image: url("images/ghosts/inky-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
 .clyde {
-    background-color: darkorange;
+    background-image: url("images/pac-man-images/clyde.png");
     border: 0;
 }
 
@@ -271,19 +256,16 @@ html, body {
 
 .clyde-right {
     background-image: url("images/ghosts/clyde-right.png");
-    transform: rotate(180deg);
     border: 0;
 }
 
 .clyde-up {
     background-image: url("images/ghosts/clyde-up.png");
-    transform: rotate(90deg);
     border: 0;
 }
 
 .clyde-down {
     background-image: url("images/ghosts/clyde-down.png");
-    transform: rotate(270deg);
     border: 0;
 }
 
