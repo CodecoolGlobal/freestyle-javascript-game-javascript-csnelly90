@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
         pacDotEaten()
         powerPelletEaten()
         getDamage()
-        getBonusLife()
         getNewMap()
     }
 
@@ -202,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             squares[ghost.currentIndex].classList.remove(ghost.className,'ghost','scared-ghost')
             ghost.currentIndex = ghost.startIndex
             score+=200
+            scoreDisplay.innerHTML = score.toString()
             squares[ghost.currentIndex].classList.add(ghost.className,'ghost')
         }
         getDamage()
@@ -212,6 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function pacDotEaten() {
         if (squares[pacmanCurrentIndex].classList.contains("pac-dot")) {
             score += 10
+            if (scoreDisplay.innerHTML === "10000"){
+                console.log(scoreDisplay.innerHTML)
+                lives++
+                livesDisplay.innerHTML = lives.toString()
+            }
             scoreDisplay.innerHTML = score.toString()
             squares[pacmanCurrentIndex].classList.remove("pac-dot")
         }
@@ -233,13 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
         document.removeEventListener("keydown",  movePacman)
         livesDisplay.innerHTML = "GAME OVER"
-    }
-
-
-    function getBonusLife() {
-        if (score === 10000){
-            lives++
-        }
     }
 
 
