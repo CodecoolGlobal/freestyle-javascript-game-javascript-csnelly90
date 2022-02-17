@@ -22,6 +22,14 @@ def get_user_id_by_email(cursor: RealDictCursor, email):
 
 
 @database_common.connection_handler
+def get_username_by_email(cursor: RealDictCursor, email):
+    query = """SELECT username FROM users WHERE email = %(email)s"""
+    value = {"email": email}
+    cursor.execute(query, value)
+    return cursor.fetchall()[0].get("username")
+
+
+@database_common.connection_handler
 def get_all_users(cursor: RealDictCursor):
     cursor.execute("""SELECT * FROM users ORDER BY email""")
     return cursor.fetchall()

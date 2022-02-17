@@ -6,6 +6,11 @@
     <div class="game-container">
         <div class="grid"></div>
         <div class="game-info">
+            {% if session.email %}
+                <div class="game-info-item"><h3 class="lives">user: {{ username }}</h3></div>
+            {% else %}
+                <div class="game-info-item"><h3 class="lives">user: guest</h3></div>
+            {% endif %}
             <div class="game-info-item"><h3 class="lives">lives: <span id = "lives">3</span></h3></div>
             <div class="game-info-item"><h3 class="score">score: <span id = "score">0</span></h3></div>
             <div class="game-info-item exit">
@@ -16,7 +21,11 @@
                 {% endif %}
             </div>
             <div class="game-info-item">
-                <form action="{{ url_for('game_over') }}" method="post">
+                <form action="{{ url_for('index') }}" method="post">
+                    <div>
+                        <input type="text" id="user_lives" name="user_lives" value="" hidden>
+                        <label for="user_lives"></label>
+                    </div>
                     <div>
                         <input type="text" id="user_score" name="user_score" value="" hidden>
                         <label for="user_score"></label>
