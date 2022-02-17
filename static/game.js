@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
         1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,
         1,1,1,1,1,1,0,1,1,4,4,4,4,4,4,4,4,4,4,1,1,0,1,1,1,1,1,1,
-        1,1,1,1,1,1,0,1,1,4,1,1,1,2,2,1,1,1,4,1,1,0,1,1,1,1,1,1,
+        1,1,1,1,1,1,0,1,1,4,1,1,2,2,2,2,1,1,4,1,1,0,1,1,1,1,1,1,
         1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
         4,4,4,4,4,4,0,0,0,4,1,2,2,2,2,2,2,1,4,0,0,0,4,4,4,4,4,4,
         1,1,1,1,1,1,0,1,1,4,1,2,2,2,2,2,2,1,4,1,1,0,1,1,1,1,1,1,
@@ -133,7 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 playerMoveLeft()
                 //check if pacman is in the left exit
                 if(pacmanCurrentIndex -1 === 363){
+                    squares[pacmanCurrentIndex].classList.remove("pac-man-right", "pac-man-up",
+                        "pac-man-left", "pac-man-down")
                     pacmanCurrentIndex = 391;
+                    squares[pacmanCurrentIndex].classList.add("pac-man-left")
                 }
                 break
             case 38: // up arrow key
@@ -143,7 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 playerMoveRight()
                 //check if pacman is in the right exit
                 if(pacmanCurrentIndex +1 === 392) {
+                    squares[pacmanCurrentIndex].classList.remove("pac-man-right", "pac-man-up",
+                        "pac-man-left", "pac-man-down")
                     pacmanCurrentIndex = 364
+                    squares[pacmanCurrentIndex].classList.add("pac-man-right")
+
                 }
                 break
             case 40: // down arrow key
@@ -154,7 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 playerMoveLeft()
                 //check if pacman is in the left exit
                 if(pacmanCurrentIndex -1 === 363){
+                    squares[pacmanCurrentIndex].classList.remove("pac-man-right", "pac-man-up",
+                        "pac-man-left", "pac-man-down")
                     pacmanCurrentIndex = 391;
+                    squares[pacmanCurrentIndex].classList.add("pac-man-left")
                 }
                 break
             case 87: // w key
@@ -164,7 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 playerMoveRight()
                 //check if pacman is in the right exit
                 if(pacmanCurrentIndex +1 === 392) {
+                    squares[pacmanCurrentIndex].classList.remove("pac-man-right", "pac-man-up",
+                        "pac-man-left", "pac-man-down")
                     pacmanCurrentIndex = 364
+                    squares[pacmanCurrentIndex].classList.add("pac-man-right")
                 }
                 break
             case 83: // s key

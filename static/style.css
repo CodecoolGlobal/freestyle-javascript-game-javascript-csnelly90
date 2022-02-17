@@ -113,6 +113,7 @@ html, body {
     display: flex;
     justify-content: flex-start;
     margin-left: 50px;
+    width: 400px;
 }
 
 .score {
@@ -120,9 +121,9 @@ html, body {
 }
 
 .pac-dot {
-    background-color: #c5e066;
-    border: 10px solid #000;
-    box-sizing: border-box;
+    background-image: url("images/pac-dot.png");
+    /*border: 7px solid #000;*/
+    /*box-sizing: border-box;*/
 }
 
 .wall {
