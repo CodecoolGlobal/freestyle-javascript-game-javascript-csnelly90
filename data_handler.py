@@ -71,3 +71,30 @@ def save_user_score(cursor: RealDictCursor, score, user_id):
             RETURNING score;
             """
     cursor.execute(query)
+
+
+@database_common.connection_handler
+def get_best_user_scores(cursor: RealDictCursor):
+    cursor.execute("""SELECT users.username, scores.score FROM scores 
+        JOIN users ON scores.user_id = users.id
+        ORDER BY score DESC LIMIT 6""")
+    score_dicts = cursor.fetchall()
+    scores = []
+    for elem in score_dicts:
+        for value in elem.values():
+            scores.append(value)
+    result = []
+    for i in range(len(scores) - 1):
+        if i % 2 != 0:
+            result.append((scores[i + 1], scores[i]))
+    return result
+
+
+@database_common.connection_handler
+def get_max_user_score(cursor: RealDictCursor, name):
+    query = """SELECT MAX(scores.score) FROM scores 
+        JOIN users ON scores.user_id = users.id
+        WHERE username = %(name)s"""
+    value = {"name": name}
+    cursor.execute(query, value)
+    return cursor.fetchone().get("max")

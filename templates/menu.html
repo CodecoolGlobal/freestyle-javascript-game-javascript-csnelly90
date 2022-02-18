@@ -13,9 +13,11 @@
         <div class="menu-item leaderboard">
             <h2><a href="{{ url_for('leaderboard') }}" class="start-game">leaderboard</a></h2>
         </div>
-        <div class="menu-item">
-            <h2 class="no-play-again"><a href="{{ url_for('logout') }}">log out</a></h2>
-        </div>
+        {% if session.email %}
+            <div class="menu-item">
+                <h2 class="no-play-again"><a href="{{ url_for('logout') }}">log out</a></h2>
+            </div>
+        {% endif %}
         <div class="ghosts-menu">
             <img class="ghosts-image" src="{{ url_for('static', filename='images/ghosts-menu.png') }}" alt="ghost icons">
         </div>

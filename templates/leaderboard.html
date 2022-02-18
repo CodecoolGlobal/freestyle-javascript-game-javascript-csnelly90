@@ -4,6 +4,27 @@
 
 {% block content %}
     <div class="container">
-        <h3 class="title">Leaderboard</h3>
+        <div><h3 class="title">Leaderboard</h3></div>
+        <div class="leaderboard-container">
+            <div class="leaderboard-first-row">
+                {% if session.email %}
+                    <div class="leaderboard-header-col leaderboard-header">your record</div>
+                    <div class="leaderboard-header-col leaderboard-header">{{ max_user_score }}</div>
+                {% else %}
+                    <div class="leaderboard-header-col leaderboard-header">best guest score</div>
+                    <div class="leaderboard-header-col leaderboard-header">{{ max_user_score }}</div>
+                {% endif %}
+            </div>
+            <div class="leaderboard-second-row">
+                <div class="leaderboard-col leaderboard-header">rank</div>
+                <div class="leaderboard-col leaderboard-header">username</div>
+                <div class="leaderboard-col leaderboard-header">score</div>
+                {% for elem in scores %}
+                    <div class="leaderboard-col">#{{ loop.index }}</div>
+                    <div class="leaderboard-col">{{ elem[0] }}</div>
+                    <div class="leaderboard-col">{{ elem[1] }}</div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

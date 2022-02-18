@@ -15,8 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const width = 28; //28 x 28 = 784 squares
     let score = 0;
     let lives = 3;
-    let remove_ghost_classes = ['blinky-up','blinky-down','blinky-left','blinky-right','pinky-up','pinky-down','pinky-left','pinky-right','inky-up','inky-down','inky-left','inky-right','clyde-up','clyde-down','clyde-right','clyde-right']
-    // game board layout
+    let remove_ghost_classes = ['blinky-up','blinky-down','blinky-left','blinky-right',
+        'pinky-up','pinky-down','pinky-left','pinky-right',
+        'inky-up','inky-down','inky-left','inky-right',
+        'clyde-up','clyde-down','clyde-right','clyde-right']
+
+    // Game board layout
     const layout = [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -54,8 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 0 - pac-dot
     // 1 - wall
     // 2 - ghost-lair
-    // 3 power-pellet
+    // 3 - power-pellet
     // 4 - empty
+
 
     function createBoard() {
         for (let i = 0; i < layout.length; i++) {
@@ -76,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     createBoard()
 
-    //starting position of pac-man
+    // Starting position of pac-man
     let pacmanCurrentIndex = 490
     squares[pacmanCurrentIndex].classList.add("pac-man-left")
 
@@ -125,12 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    //move pac-man
+    // Move pac-man
     function movePacman(e){
         squares[pacmanCurrentIndex].classList.remove("pac-man")
-        //move pac-man with arrows
 
         switch (e.keyCode){
+            // Move pac-man with arrows
             case 37:  // left arrow key
                 playerMoveLeft()
                 //check if pacman is in the left exit
@@ -152,13 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         "pac-man-left", "pac-man-down")
                     pacmanCurrentIndex = 364
                     squares[pacmanCurrentIndex].classList.add("pac-man-right")
-
                 }
                 break
             case 40: // down arrow key
                 playerMoveDown()
                 break
-            //move pac-man with AWSD
+
+            // Move pac-man with AWSD
             case 65:  // a key
                 playerMoveLeft()
                 //check if pacman is in the left exit
@@ -198,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("keydown",  movePacman)
 
-    //create ghost template
+    // Create ghost template
     class Ghost{
         constructor(className,startIndex,speed) {
             this.className = className
@@ -218,13 +223,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ]
 
-    //draw my ghosts on the table
+    // Draw ghosts on the table
     ghosts.forEach(ghost => {
         squares[ghost.currentIndex].classList.add(ghost.className)
         squares[ghost.currentIndex].classList.add('ghost')
     })
 
-    //move the Ghosts randomly
+    // Move the ghosts randomly
     ghosts.forEach(ghost => moveGhost(ghost))
 
     function moveGhost(ghost) {
@@ -232,13 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let direction = directions[Math.floor(Math.random() * directions.length)]
 
     ghost.timerId = setInterval(function() {
-      //if the next square your ghost is going to go to does not have a ghost and does not have a wall
+      // if the next square your ghost is going to go to does not have a ghost and does not have a wall
       if  (!squares[ghost.currentIndex + direction].classList.contains('ghost') &&
         !squares[ghost.currentIndex + direction].classList.contains('wall') ) {
-          //remove the ghosts classes
+          // remove the ghosts classes
           squares[ghost.currentIndex].classList.remove(ghost.className)
           squares[ghost.currentIndex].classList.remove('ghost', 'scared-ghost')
-          //move into that space
+          // move into that space
           if(ghost.className === 'blinky') {
               changeGhostImg(direction,ghost)
           }
@@ -253,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
-      //else find a new random direction ot go in
+      // else find a new random direction to go in
       } else direction = directions[Math.floor(Math.random() * directions.length)]
 
         if (ghost.isScared){
@@ -367,6 +372,5 @@ document.addEventListener("DOMContentLoaded", () => {
         squares[pacmanCurrentIndex].classList.remove('power-pellet')
     }
   }
-
 
 })

@@ -44,6 +44,82 @@ html, body {
     margin: auto;
 }
 
+.leaderboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 70%;
+    width: 80%;
+    margin: auto;
+    border: 10px solid #fcc741;
+    border-radius: 10px;
+}
+
+.leaderboard-first-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
+    height: 20%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4f63e1;
+}
+
+.leaderboard-second-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    height: 60%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #bd3232;
+}
+
+.leaderboard-header {
+    background-color: #fcc741;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-size: 16px;
+}
+
+.leaderboard-header-col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    min-width: 45%;
+    min-height: 70%;
+    margin: auto;
+    border: 2px solid #fcc741;
+    border-radius: 10px;
+}
+
+.leaderboard-col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    min-width: 25%;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid #fcc741;
+    border-radius: 10px;
+}
+
 .title {
     display: flex;
     justify-content: center;

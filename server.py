@@ -40,7 +40,7 @@ def index():
         lives = request.form["user_lives"]
         if score != "0":
             data_handler.save_user_score(score, user_id)
-        if lives == "0":
+        if lives == "0" or lives == "GAME OVER":
             return redirect(url_for("game_over", score=score))
         else:
             return redirect(url_for("exit_game", score=score))
@@ -50,7 +50,13 @@ def index():
 
 @app.route("/leaderboard")
 def leaderboard():
-    return render_template("leaderboard.html")
+    if is_logged_in():
+        current_user = data_handler.get_username_by_email(session["email"])
+    else:
+        current_user = data_handler.get_username_by_email("guest")
+    scores = data_handler.get_best_user_scores()
+    max_user_score = data_handler.get_max_user_score(current_user)
+    return render_template("leaderboard.html", scores=scores, max_user_score=max_user_score)
 
 
 @app.route("/game-over/<score>")
